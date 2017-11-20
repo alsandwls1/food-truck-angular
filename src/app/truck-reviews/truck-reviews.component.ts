@@ -34,6 +34,9 @@ export class TruckReviewsComponent implements OnInit {
   //pagination
   p: number = 1;
 
+  preview:boolean;
+  f: FormGroup;
+
   constructor(
     private http: Http,
     private router: Router,
@@ -49,7 +52,7 @@ export class TruckReviewsComponent implements OnInit {
     //star-rating
     this.f = fb.group({
       'comment' : [null, Validators.compose([Validators.required, Validators.maxLength(500)])],
-      'score' :  new FormControl('')
+      'score' :  new FormControl(''),
     });
   }
 
@@ -67,29 +70,9 @@ export class TruckReviewsComponent implements OnInit {
       })
   }
 
-  //star-rating
-  // onClickResult: OnClickEvent;
-  // onHoverRatingChangeResult: OnHoverRatingChangeEvent;
-  // onRatingChangeResult: OnRatingChangeEven;
-  //
-  // onClick = ($event: OnClickEvent) => {
-  //   console.log('onClick $event: ', $event);
-  //   this.onClickResult = $event;
-  // };
-  //
-  // onRatingChange = ($event: OnRatingChangeEven) => {
-  //   console.log('onRatingUpdated $event: ', $event);
-  //   this.onRatingChangeResult = $event;
-  // };
-  //
-  // onHoverRatingChange = ($event: OnHoverRatingChangeEvent) => {
-  //   console.log('onHoverRatingChange $event: ', $event);
-  //   this.onHoverRatingChangeResult = $event;
-  // };
-
-
   //사진올리기
   selectFile(event) {
+    this.preview=true;
     this.selectedFiles = event.target.files;
     if (event.target.files && event.target.files[0]) {
       var reader = new FileReader();
@@ -100,18 +83,28 @@ export class TruckReviewsComponent implements OnInit {
     }
   }
 
-  f: FormGroup;
-  post:any;
 
-  onSubmit(post) {
+  onSubmit(f) {
     if (this.selectedFiles === undefined) {
-      this.addReview2(post.comment, post.score, this.member.memail, this.tid);
+      this.addReview2(f.value.comment, f.value.score, this.member.memail, this.tid);
     } else {
-      post.image = this.selectedFiles.item(0);
-      console.log(post);
-      this.addReview(post.comment, post.image, post.score, this.member.memail, this.tid);
+      f.value.image = this.selectedFiles.item(0);
+      console.log('????????????????????????'+f.value);
+      this.addReview(f.value.comment, f.value.image, f.value.score, this.member.memail, this.tid);
+      f.reset();
+      console.log(this.selectedFiles+"/////////////////");
+      this.preview=false;
     }
   }
+  // onSubmit(post) {
+  //   if (this.selectedFiles === undefined) {
+  //     this.addReview2(post.comment, post.score, this.member.memail, this.tid);
+  //   } else {
+  //     post.image = this.selectedFiles.item(0);
+  //     console.log(post);
+  //     this.addReview(post.comment, post.image, post.score, this.member.memail, this.tid);
+  //   }
+  // }
 
   // onSubmit(f) {
   //   if (this.selectedFiles === undefined) {

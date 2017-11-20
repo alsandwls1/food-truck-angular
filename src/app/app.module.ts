@@ -28,8 +28,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //timepicker: npm install ngx-bootstrap --save
 import { TimepickerModule  } from 'ngx-bootstrap';
-import { BsDatepickerModule } from 'ngx-bootstrap';
 import { PopoverModule } from 'ngx-bootstrap';
+// import { BsDatepickerModule } from 'ngx-bootstrap';
+
+//focebook: npm i --save ngx-facebook
+import { FacebookModule } from 'ngx-facebook';
 
 //component
 import { AppComponent } from './app.component';
@@ -110,8 +113,11 @@ import { CanivalService } from './_services/canival.service';
     BrowserAnimationsModule,
     //timepicker
     TimepickerModule .forRoot(),
-    BsDatepickerModule.forRoot(),
     PopoverModule.forRoot(),
+    // BsDatepickerModule.forRoot(),
+    //Facebook
+    FacebookModule.forRoot(),
+    //map
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBFQmGdDApLDMW8Fp3F8VtOv9kwAg1xAUU',
       region: "kr",

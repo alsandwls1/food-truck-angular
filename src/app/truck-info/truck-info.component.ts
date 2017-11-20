@@ -11,6 +11,9 @@ import { HotlistService } from '../_services/hotlist.service';
 import { NgxSmartModalService } from 'ngx-smart-modal';
 import { AuthenticationService } from '../_services/authentication.service';
 
+//facebook
+import { FacebookService, InitParams } from 'ngx-facebook';
+
 import { Truck } from '../_models/truck.model';
 import { Member } from '../_models/member.model';
 
@@ -42,6 +45,7 @@ export class TruckInfoComponent implements OnInit {
   checkHot: boolean = false;
 
   tid: string;
+  dynamicPage: string;
   sub: any;
 
   currentFileUpload: File;
@@ -78,17 +82,29 @@ export class TruckInfoComponent implements OnInit {
     public ngxSmartModalService: NgxSmartModalService,
     private authenticationService: AuthenticationService,
     private router: Router,
+    private fb: FacebookService,
   ) {
     this.session = sessionStorage.getItem('member');
     if(this.session !== null) {
       let member = JSON.parse(this.session) as Member;
       this.email = member.memail;
     }
+
+    let initParams: InitParams = {
+      appId: '130794264251828',
+      xfbml: true,
+      version: 'v2.8'
+    };
+
+    fb.init(initParams);
   }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
+      //tid값 구하기
       this.tid = params['tid'];
+      //dynamicPage에 facebook like button을 누를 홈페이지 주소 구하기
+      this.dynamicPage = `http://localhost:4200/truck-info/${this.tid}`;
       //트럭정보 초기에 불러오기
       this.getTruckInfo(this.tid);
       this.agmMap.triggerResize();

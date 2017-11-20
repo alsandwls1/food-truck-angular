@@ -2,14 +2,14 @@
   <div class="row">
     <h3>푸드리스트</h3>
     <!-- 화면에 결과 메세지를 띄우고 싶을 때, 지금은 alert사용 -->
-    <div  class="col-md-4" *ngFor="let f of foods">
+    <div  class="col-lg-4 col-md-4 col-sm-6" *ngFor="let f of foods">
       <div class="panel panel-default">
         <div class="panel-heading" >음식 번호: {{f.fid}}</div>
         <div class="panel-body" >
-          <div class="col-sm-5 " >
+          <div class="col-lg-6 col-md-6 col-sm-6" >
             <img src="http://localhost:8080/image/{{f.fimage}}" alt="img X" width="120px" height="120px">
           </div>
-          <div class="col-sm-7 ">
+          <div class="col-lg-6 col-sm-6 col-sm-6">
             <strong>{{f.fname}}</strong> <br>
             {{f.fprice}} 원<br>
             <div class="description" style="font-size:0.8em">
@@ -28,7 +28,7 @@
     </div>
   </div>
   <div class="" *ngIf="check()">
-    <form class="form-horizontal" name="form" (ngSubmit)="onSubmit(f)" #f="ngForm" novalidate>
+    <form class="form-horizontal" name="f" (ngSubmit)="onSubmit(f)" #f="ngForm" novalidate>
       <div class="form-group">
         <label for="name" class="control-label col-xs-2">이름</label>
         <div class="col-xs-10">

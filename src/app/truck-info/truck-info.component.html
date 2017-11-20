@@ -4,10 +4,12 @@
     <div  class="col-md-12">
       <div class="panel panel-default">
         <div class="panel-heading">트럭 번호: {{tid}}
-          <div class="pull-right" *ngIf="!check2()">
+          <div class="pull-right" >
             <!-- <button type="button" class="btn btn-xs btn-default" *ngIf="check" (click)="favorite(tid)">즐겨찾기 추가</button> -->
             <!-- <button type="button" class="btn btn-xs btn-default" *ngIf="!checkHot" (click)="addHotlist(tid)">즐겨찾기 추가</button> -->
-            <button type="button" class="btn btn-xs btn-default" *ngIf="email && !checkHot" (click)="addHotlist(tid)">즐겨찾기 추가</button>
+            <span *ngIf="!check2()">
+              <button type="button" class="btn btn-xs btn-default" *ngIf="email && !checkHot" (click)="addHotlist(tid)">즐겨찾기 추가</button>
+            </span>
             <!-- <button type="button" class="btn btn-xs btn-default"  *ngIf="email && checkHot" >즐겨찾기 완료</button> -->
           </div>
         </div>
@@ -38,9 +40,21 @@
             주인: {{tmember}}<br>
           </div>
         </div>
-        <div class="panel-footer clearfix" *ngIf="check2()">
+        <div class="panel-footer clearfix">
+          <div class="pull-left">
+            <!-- facebook -->
+            <div class="fb-like"
+              data-href="http://localhost:4200/truck-info/{tid}"
+              data-layout="button_count"
+              data-action="like"
+              data-size="small"
+              data-show-faces="false">
+            </div>
+          </div>
           <div class="pull-right">
-            <button class="btn btn-default" (click)="ngxSmartModalService.getModal('myModal').open() ; editTruck(f)">트럭정보수정</button>
+            <span *ngIf="check2()">
+              <button   class="btn btn-default btn-xs" (click)="ngxSmartModalService.getModal('myModal').open() ; editTruck(f)">트럭정보수정</button>
+            </span>
           </div>
         </div>
       </div>
