@@ -42,7 +42,7 @@ export class HotlistService {
     console.log(tId);
     var id = JSON.parse(sessionStorage.getItem('member')).memail;
     console.log("id = " + id);
-    const url = `${this.hotlistUrl}/check/${id}/${tId}`;
+    const url = `${this.hotlistUrl}/check/${tId}/${id}`;
     console.log(url)
     return this.http.get(url).subscribe(
       res=>{

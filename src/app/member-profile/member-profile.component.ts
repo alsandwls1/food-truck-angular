@@ -14,9 +14,9 @@ import { Member } from '../_models/member.model';
 export class MemberProfileComponent implements OnInit {
   private member: Member;
 
-  email:string;
-  password:string;
-  nickname:string;
+  private email:string;
+  private password:string;
+  private nickname:string;
 
   constructor(
     private memberService:MemberService,

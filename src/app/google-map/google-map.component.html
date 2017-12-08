@@ -38,9 +38,43 @@ type="text">
       </div>
     </agm-info-window> -->
     <agm-info-window [disableAutoPan]="true" #infoWindow>
+        <div class="panel panel-default">
+          <!-- <div class="panel-heading">
+            <h4 style="margin:0;"><a (click)="getFoodTruck(truck.tid)">{{truck.tname}}</a></h4>
+          </div> -->
+          <div class="panel-body">
+            <div class=" col-md-12">
+              <div class="col-md-4 col-sm-4">
+                <img src="http://localhost:8080/image/{{truck.timage}}" alt="" width="75px" height="75px">
+              </div>
+              <div class="col-md-8 col-sm-8">
+                <h4 style="margin:0;"><a (click)="getFoodTruck(truck.tid)">{{truck.tname}}</a></h4>
+                {{truck.topen}} ~ {{truck.tclose}}<br>
+                {{truck.tcomment}}
+                <div class="star-container">
+                  <star-rating-comp
+                    [starType]="'svg'"
+                    [hoverEnabled]="false"
+                    [size]="'medium'"
+                    [direction]="'ltr'"
+                    [rating]="truck.tavg"
+                    [step]="0.1"
+                    [showHalfStars]="true"
+                    [readOnly]="true">
+                  </star-rating-comp>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </agm-info-window>
+    <!-- <agm-info-window [disableAutoPan]="true" #infoWindow>
           <div class="panel panel-default">
             <div class="panel-heading">
               <strong>{{truck.tname}}</strong>
+              <span class="text-right">
+                <button class="btn btn-xs btn-info " type="button" (click)="getFoodTruck(truck.tid)">바로가기</button>
+              </span>
             </div>
             <div class="panel-body">
               <div class=" col-md-12">
@@ -66,11 +100,9 @@ type="text">
               </div>
             </div>
           </div>
-          <div class="panel-footer text-right">
-            <button class="btn btn-xs btn-info" type="button" (click)="getFoodTruck(truck.tid)">바로가기</button>
-          </div>
+
         </div>
-      </agm-info-window>
+      </agm-info-window> -->
   </agm-marker>
 </agm-map>
 

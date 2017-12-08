@@ -17,7 +17,7 @@
       <div class="form-group">
           <button class="btn btn-primary" [disabled]="f.invalid">Login</button>
       </div>
-      <p class="message">Not registered? <a href="#">Create an account</a></p>
+      <p class="message">Not registered? <a routerLink="/join-page">Create an account</a></p>
       <div *ngIf="error" class="alert alert-danger">{{error}}</div>
 		</form>
 	</div>
